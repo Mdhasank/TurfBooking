@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<div class="container-fluid">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-6 m-auto m my-1">
+						<div class="card mt-4">
+							<div class="card-header text-center fs-4 Main text-white">
+								<p class="fs-4 mt-2">Make Payment</p>
+								<th:block th:if="${session.succMsg}">
+									<p class="text-ligth fw-bold">[[${session.succMsg}]]</p>
+									<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+								</th:block>
+								<th:block th:if="${session.errMsg}">
+									<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+									<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+								</th:block>
+
+							</div>
+							<div class="card-body">
+								<form action="/saveBooking" method="post">
+									<input type="hidden" name="groundId" th:value="${g.id}">
+									<div class="mb-3">
+										<label for="groundName" class="form-label">Ground Name</label>
+										<input type="text" name="name" th:value="${g.name}" id="groundName" class="form-control" readonly>
+									</div>
+									<div class="mb-3">
+										<label for="selectTime" class="form-label">Select Time</label>
+										<select name="slot" id="selectTime" class="form-select">
+											<option value="08:00 PM 09:00 PM">08:00 PM - 09:00 PM</option>
+											<option value="10:00 PM 11:00 PM">10:00 PM - 11:00 PM</option>
+											<option value="12:00 AM 01:00 AM">12:00 AM - 01:00 AM</option>
+											<option value="01:00 AM 02:00 AM">01:00 AM - 02:00 AM</option>
+											<option value="02:00 AM 03:00 AM">02:00 AM - 03:00 AM</option>
+											<option value="04:00 AM 05:00 AM">04:00 AM - 05:00 AM</option>
+											<option value="06:00 AM 07:00 AM">06:00 AM - 07:00 AM</option>
+										</select>
+									</div>
+									<div class="mb-3">
+										<label for="selectDate" class="form-label">Select Date</label>
+										<input type="date" name="date" id="selectDate" class="form-control" required>
+									</div>
+									<div class="mb-3">
+										<label for="selectPaymentMode" class="form-label">Select Payment Mode</label>
+										<select name="paymentType" id="selectPaymentMode" class="form-select">
+											<option value="G-PAY">G-Pay</option>
+											<option value="Paytm">Paytm</option>
+										</select>
+									</div>
+									<div class="mb-3">
+										<label for="payNow" class="form-label">Amount</label>
+										<input type="number" name="payNow" th:value="${g.price}" id="payNow" class="form-control" readonly>
+									</div>
+									<div class="text-center">
+										<button class="btn btn-success w-100">Pay Now</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>  
+		<!-- <div id="congrats-div" class="congrats-div" style="display: none;">
+			<p>Congratulations!</p>
+			<i class="fas fa-check-circle"></i>
+		</div>
+		
+		<script>
+			document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // prevent form submission
+
+    document.querySelector('#congrats-div').style.display = 'block'; // display the congratulatory message
+
+    setTimeout(function() {
+        document.querySelector('#congrats-div').style.display = 'none'; // hide the congratulatory message after 2 seconds
+    }, 2000);
+});
+		</script> -->
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/adminbase::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<div class="container mt-4">
+			<div class="row mb-4 ">
+				<div class="col-md-6 offset-md-3">
+					<div class="card">
+						<div class="card-header text-center fs-4 mt-3 mb-2 Main text-white">
+							<p class="fs-3">Edit Ground Details</p>
+							<th:block th:if="${session.succMsg}">
+								<p class="text-light fw-bold">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errMsg}">
+								<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+
+						</div>
+						<div class="card-body">
+							<form th:action="@{/admin/updateGround}" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="id" th:value="${ground.id}" required />
+								<div class="mb-3">
+									<label for="exampleInputGround" class="form-label">Enter Ground Name</label>
+									<input type="text" name="name" class="form-control"
+										 th:value="${ground.name}" required />
+								</div>
+								<div class="mb-3">
+									<label for="exampleInputDescription" class="form-label">Enter Ground Description</label>
+									<textarea name="description" id="" rows="1" class="form-control"
+										required>[[${ground.description}]]</textarea>
+								</div>
+								<div class="row">
+									<div class="col">
+										<label for="exampleInputWidth" class="form-label">Enter Ground Width</label>
+										<input type="number" name="width" class="form-control"
+											th:value="${ground.width}" required>
+									</div>
+
+									<div class="col">
+										<label for="exampleInputLength" class="form-label">Enter Ground Length</label>
+										<input type="number" name="length" class="form-control"
+											th:value="${ground.length}" required>
+									</div>
+
+								</div>
+								<div class="row mt-2 ">
+									<div class="col">
+										<label for="exampleInputLength" class="form-label">Enter Ground Height</label>
+										<input type="number" name="height" class="form-control"
+											th:value="${ground.height}" required>
+									</div>
+
+									<div class="col">
+										<label for="exampleInputLength" class="form-label">Enter Ground Price</label>
+										<input type="number" name="price" class="form-control"
+											th:value="${ground.price}" required>
+									</div>
+								</div>
+								<div class="row mt-4 ">
+									<div class="col">
+										<label>Status</label>
+
+										<div class="form-check">
+											<input class="form-check-input" type="radio" checked value="true"
+												th:checked="${ground.isActive==true}" name="isActive" id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Active </label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="isActive" value="false"
+												th:checked="${ground.isActive==false}" id="flexRadioDefault2"> <label class="form-check-label"
+												for="flexRadioDefault2">
+												InActive </label>
+										</div>
+									</div>
+									<div class="col">
+										<label for="exampleInputGround" class="form-label">Select Category</label>
+										<select name="category" class="form-control" required>
+											<option>[[${ground.category}]]</option>
+											<option th:each="c:${allCategory}">[[${c.name}]]</option>
+										</select>
+									</div>
+								</div>
+
+
+
+								<div class="mb-3 mt-2">
+									<input type="file" name="file" class="form-control"
+										placeholder="Enter Product Image" />
+								</div>
+								<div class="text-center mb-3 ">
+									<img th:src="@{'/img/ground_img/'+${ground.image}}" alt="Error" width="400px"
+										height="180px" />
+								</div>
+								<div class="text-center">
+									<button class="btn btn-outline-success">Update Ground</button>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

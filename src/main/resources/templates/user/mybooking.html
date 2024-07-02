@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+<body>
+	<section style="height: 530px;">
+		<div class="container-fluid">
+			<div class="row mt-4">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header fs-4 text-center Main text-white rounded">
+							<p class="fs-4 pt-2">My Bookings</p>
+
+						</div>
+						<div class="card-body">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th scope="col">Ground</th>
+										<th scope="col">Ground Name</th>
+										<th scope="col">Booking Id</th>
+										<th scope="col">Name</th>
+										<th scope="col">Contact no.</th>
+										<th scope="col">Date</th>
+										<th scope="col">Time Slot</th>
+										<th scope="col">Mode</th>
+										<th scope="col">Amount</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr>
+
+										<tr th:each="book, b:${allBookings}">
+											<th scope="row">1</th>
+											<td>[[${book.name}]]</td>
+											<td>TId[[${book.id}]]</td>
+											<td>[[${customer.firstName}]]</td>
+											<td>[[${customer.phoneNumber}]]</td>
+											<td>[[${book.date}]]</td>
+											<td>[[${book.slot}]]</td>
+											<td>[[${book.paymentType}]]</td>
+											<td>[[${book.payNow}]]</td>
+	
+										
+									
+										
+									</tr>
+
+								</tbody>
+							</table>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

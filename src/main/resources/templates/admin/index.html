@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/adminbase::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Admin Panel</title>
+</head>
+<body>
+	<section style="height: 590px;">
+		<div class="container">
+			<h1 class="text-center text-success mt-4 pt-0 mb-5">Admin Dashboard</h1>
+			<div class="row pt-3 mb-5">
+				<!--first 4 grid-->
+				<div class="col-md-4 admin">
+					<a href="/admin/addground" style="text-decoration: none;">
+						<div class="card card-sh">
+							<div class="card-body text-center">
+								<i class="fa-solid fa-square-plus fa-3x text-success"></i>
+								<p class="fs-4 text-dark">Add Ground</p>
+							</div>
+						</div>
+					</a>
+				</div>
+				<!--end 4 grid-->
+				<div class="col-md-4 admin">
+					<a href="/admin/viewground" style="text-decoration: none;">
+						<div class="card card-sh">
+							<div class="card-body text-center">
+								<i class="fa-solid fa-glasses fa-3x text-danger"></i>
+								<p class="fs-4 text-dark">View All Grounds</p>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 admin">
+					<a href="/admin/addandviewcategory" style="text-decoration: none;">
+						<div class="card card-sh">
+							<div class="card-body text-center">
+								<i class="fa-solid fa-list fa-3x text-success"></i>
+								<p class="fs-4 text-dark">Add Ground Category</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			
+			
+				<!--admin-->
+				<div class="col-md-4 mt-4 admin">
+					<a href="/admin/booking" style="text-decoration: none;">
+						<div class="card card-sh">
+							<div class="card-body text-center">
+								<i class="fa-solid fa-calendar-day fa-3x text-warning"></i>
+								<p class="fs-4 text-dark">View All Booking</p>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 mt-4 admin">
+					<a href="/admin/allcustomer" style="text-decoration: none;">
+						<div class="card card-sh">
+							<div class="card-body text-center">
+								<i class="fa-solid fa-users fa-3x "></i>
+								<p class="fs-4 text-dark">View All Customer</p>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 mt-4 admin">
+					<a href="/admin/review" style="text-decoration: none;">
+						<div class="card card-sh">
+							<div class="card-body text-center">
+								<i class="fa-solid fa-thumbs-up fa-3x text-info"></i>
+								<p class="fs-4 text-dark">Review</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

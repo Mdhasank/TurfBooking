@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title th:text="${title}"></title>
+</head>
+
+<body>
+	<section>
+		<main>
+			<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active" style="background-image: url('img/bg.jpeg')">
+						<div class="carousel-caption">
+							<h1>Unleash Your Sporting Passion</h1>
+							<p>
+								Discover the thrill of booking top-notch grounds at your
+								fingertips. Elevate your game with MatchSpot!
+							</p>
+							<a href="/grounds" class="btn btn-success btn-lg">Explore grounds</a>
+						</div>
+					</div>
+					<div class="carousel-item" style="background-image: url('img/bg2.jpg')">
+						<div class="carousel-caption">
+							<h1>Find Your Perfect Playground</h1>
+							<p>
+								From soccer to cricket, we have the best grounds for every sport.
+								Book now and start playing!
+							</p>
+							<a href="/grounds" class="btn btn-success btn-lg">Book Now</a>
+						</div>
+					</div>
+					<div class="carousel-item" style="background-image: url('img/bg3.jpg')">
+						<div class="carousel-caption">
+							<h1>Your Sports Destination Awaits</h1>
+							<p>
+								Join us and experience the joy of sports. Book grounds, meet
+								players, and play your heart out!
+							</p>
+							<a href="/register" class="btn btn-success btn-lg">Join Now</a>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</main>
+
+		<div class="container mt-4">
+			<div class="row">
+				<div class="col-lg-4 col-md-6" th:each="cat,c:${categories}">
+					<div class="turf-card">
+						<div >
+							<div class="turf-card-body">
+								<img th:src="@{'/img/category_img/'+${cat.imageName}}" width="100%" height="100px" />
+								<b class="turf-card-title mt-2">[[${cat.name}]]</b>
+								<p class="turf-card-text">
+									Perfect your cricket skills on our well-maintained turfs. Book
+									now and enjoy a great game!
+								</p>
+								<a href="/grounds" class="turf-card-button" style="text-decoration: none;">Book Now
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="container-xxl about-section">
+			<div class="row m-4">
+				<h2 class="section-heading mb-5 text-success text-center">
+					About Us
+				</h2>
+
+				<div class="col-lg-6">
+					<img src="img/about-image.jpg" class="img-fluid" alt="About Us Image" />
+				</div>
+				<div class="col-lg-6">
+					<p class="section-text mt-0">
+						At MatchSpot, we're passionate about sports and recreation. Our
+						mission is to provide sports clubs and enthusiasts with a seamless
+						platform to book turfs and facilities hassle-free. With our
+						user-friendly app, you can explore and book the best turfs for
+						your favorite sports.
+					</p>
+					<p class="section-text">
+						Our team is dedicated to ensuring that you have a fantastic
+						experience every time you use MatchSpot. Whether you're a sports
+						club looking to manage bookings or an individual searching for the
+						perfect turf, MatchSpot has you covered.
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div class="container-xxl mt-4 contact-us">
+			<div class="row mt-4 pt-4 ps-4">
+				<div class="col-md-6">
+					<div class="contact-content">
+						<h2 class="text-success mb-4">Contact Us</h2>
+						<th:block th:if="${session.succMsg}">
+							<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+							<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+						</th:block>
+						<th:block th:if="${session.errMsg}">
+							<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+							<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+						</th:block>
+						<p>
+							Have questions or need assistance? Feel free to reach out to us
+							using the form below. We'd love to hear from you!
+						</p>
+						<form action="/saveContact" method="post">
+							<div class="mb-3">
+								<label for="name" class="form-label">Your Name:</label>
+								<input type="text" class="form-control" id="name" name="name" required />
+							</div>
+							<div class="mb-3">
+								<label for="email" class="form-label">Your Email:</label>
+								<input type="email" class="form-control" id="email" name="email" required />
+							</div>
+							<div class="mb-3">
+								<label for="message" class="form-label">Your Message:</label>
+								<textarea class="form-control" rows="2" cols="20" id="message" name="message"
+									required></textarea>
+							</div>
+							<button type="submit" class="btn btn-success">
+								Send Message
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section style="background-color: #fafff7; height: 588px;">
+		<div class="container mt-4 p-4">
+			<div class="row">
+				<div class="col-md-5 py-2 offset-md-3">
+					<div class="card shadow p-3  bg-body rounded">
+						<div class="card-header Main text-white  text-center">
+							<h3 class="text-white pt-1">Login Here </h3>
+							<th:block th:if="${errorMessage}">
+								<p class="text-center text-danger fw-bold fs-5">[[${errorMessage}]]</p>
+							</th:block>
+
+							<th:block th:if="${param.logout}">
+								<p class="text-center text-danger fs-5">LOGOUT SUCCESSFULLY</p>
+							</th:block>
+						</div>
+						<div class="card-body">
+
+							<form th:action="@{user}" method="post">
+								<div class="mb-3">
+									<label for="exampleInputEmail1" class="form-label">Email address</label>
+									<input type="email" class="form-control" id="exampleInputEmail1"
+										aria-describedby="emailHelp" name="username" required>
+									<div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+									</div>
+								</div>
+								<div class="mb-3">
+									<label for="exampleInputPassword1" class="form-label">Password</label>
+									<input type="text" class="form-control" id="exampleInputPassword1" name="password"
+										required>
+								</div>
+								<div class="container text-center">
+									<button type="submit" class="btn btn-success">Submit</button>
+									<button type="reset" class="btn btn-success">Reset</button>
+								</div>
+							</form>
+						</div>
+						<div class="card-footer text-center">
+							Don't have an account? <a href="/register" class="text-decoration-none">Create one</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>

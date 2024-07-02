@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+			<div class="container card-sh" style="margin-top: 10px;margin-bottom: 100px;">
+				<div class="row">
+					<div class="col-md-6 py-3">
+						<img alt="error" th:src="@{'/img/ground_img/'+${g.image}}" class="img-fluid" style="max-width: 100%;">
+					</div>
+					<div class="col-md-6">
+						<div>
+							<div class="card-body">
+								<h2 class="fs-3 mt-3">[[${g.name}]]</h2><br>
+								<dl class="row">
+									<dt class="col-sm-3">Description</dt>
+									<dd class="col-sm-9">[[${g.description}]]</dd>
+								  
+									<dt class="col-sm-3">Details</dt>
+									<dd class="col-sm-9">
+									  <dl class="row">
+										<dt class="col-sm-2">Height</dt>
+										<dd class="col-sm-4">[[${g.height}]] m</dd>
+										<dt class="col-sm-2">Width</dt>
+										<dd class="col-sm-4">[[${g.width}]] m</dd>
+										<dt class="col-sm-2">Length</dt>
+										<dd class="col-sm-4">[[${g.length}]] m</dd>
+									  </dl>
+									</dd>
+								  
+									<dt class="col-sm-3">Category</dt>
+									<dd class="col-sm-9">[[${g.category}]]</dd>
+									<dt class="col-sm-3">Price</dt>
+									<dd class="col-sm-6 text-success fw-bold">[[${g.price}]] /-</dd>
+								  </dl>
+								  <a href="/payment" class="btn btn-success w-100">Book Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+	</section>
+</body>
+
+</html>

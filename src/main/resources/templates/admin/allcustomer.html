@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/adminbase::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section style="height: 530px;">
+		<div class="container-fluid">
+			<div class="row mt-4">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header fs-4 text-center Main text-white rounded">
+							<p class="fs-4 pt-2">View All Customers</p>
+
+						</div>
+						<div class="card-body">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th scope="col">First Name</th>
+										<th scope="col">Last Name</th>
+										<th scope="col">Email Id</th>
+										<th scope="col">Phone Number</th>
+										<th scope="col">Address</th>
+										<th scope="col">Role</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr th:each="cus, c:${customers}">
+										
+										<td>[[${cus.firstName}]]</td>
+										<td>[[${cus.lastName}]]</td>
+										<td>[[${cus.email}]]</td>
+										<td>[[${cus.phoneNumber}]]</td>
+										<td>[[${cus.address}]]</td>
+										<td>[[${cus.role}]]</td>
+									
+									</tr>
+
+								</tbody>
+							</table>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

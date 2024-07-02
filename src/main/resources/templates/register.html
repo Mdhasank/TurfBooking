@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section style="background-color: #fafff7;">
+		<div class="container mt-4 pt-4 ">
+			<div class="row mt-2">
+				<div class="col-md-6 py-2 offset-md-3">
+					<div class="card shadow p-0 mb-0 bg-body rounded">
+						<div class="card-header Main text-white text-center">
+							<h3 class="text-white fs-4 pt-2">Register Here</h3>
+							<th:block th:if="${session.succMsg}">
+								<p class="text-light fw-bold">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errMsg}">
+								<p class="text-danger fw-bold">[[${session.errMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+
+						</div>
+						<div class="card-body">
+							<form th:action="@{/registerCustomer}" method="post" th:object="${customer}"
+								class="needs-validation" novalidate>
+								<div class="row">
+									<div class="col">
+										<label class="form-label">First Name</label>
+										<input type="text" name="firstName" class="form-control"
+											th:value="${customer.firstName}"
+											th:classappend="${#fields.hasErrors('firstName')? 'is-invalid' : ''}">
+										<div th:each="e : ${#fields.errors('firstName')}" th:text="${e}"
+											class="invalid-feedback">
+										</div>
+									</div>
+									<div class="row">
+
+										<div class="col">
+											<label for="exampleInputName">Last name</label>
+											<input type="text" name="lastName" class="form-control "
+												id="exampleInputName" th:value="${customer.lastName}"
+												th:classappend="${#fields.hasErrors('lastName')? 'is-invalid' : ''}">
+
+											<div th:each="e : ${#fields.errors('lastName')}" th:text="${e}"
+												class="invalid-feedback">
+
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<label class="form-label">Email</label>
+											<input type="email" name="email" class="form-control"
+												th:value="${customer.email}"
+												th:classappend="${#fields.hasErrors('email')? 'is-invalid' : ''}">
+											<div th:each="e : ${#fields.errors('email')}" th:text="${e}"
+												class="invalid-feedback">
+
+											</div>
+										</div>
+
+										<div class="col">
+											<label class="form-label">Phone Number</label>
+											<input type="number" name="phoneNumber" class="form-control"
+												th:value="${customer.phoneNumber}"
+												th:classappend="${#fields.hasErrors('phoneNumber')? 'is-invalid' : ''}">
+											<div th:each="e : ${#fields.errors('phoneNumber')}" th:text="${e}"
+												class="invalid-feedback">
+											</div>
+										</div>
+
+									</div>
+									<div class="row">
+										<div class="col">
+											<label class="form-label">Enter Address</label>
+											<input type="text" name="address" class="form-control"
+												th:value="${customer.address}"
+												th:classappend="${#fields.hasErrors('address')? 'is-invalid' : ''}">
+
+											<div th:each="e : ${#fields.errors('address')}" th:text="${e}"
+												class="invalid-feedback">
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<label class="form-label">Password</label>
+<input type="password" name="password" id="password" class="form-control"
+       th:value="${customer.password}">
+<div id="passwordError" style="color: red;"></div>
+											
+										</div>
+									</div>
+
+									<div class="container text-center mt-2">
+										<button type="submit" class="btn btn-success">Submit</button>
+										<button type="reset" class="btn btn-success">Reset</button>
+									</div>
+							</form>
+						</div>
+						<div class="card-footer text-center">
+							Already have an account ? <a href="/login" class="text-decoration-none">Login</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			document.getElementById("password").addEventListener("blur", function () {
+				var password = this.value;
+				var passwordError = document.getElementById("passwordError");
+				if (!password.match(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*()-+=]).{4,10}$/)) {
+					passwordError.innerText = "Length must be between 4 and 10 characters.";
+				} else {
+					passwordError.innerText = "";
+				}
+			});
+		</script>
+	</section>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>
